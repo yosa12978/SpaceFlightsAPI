@@ -7,4 +7,5 @@ public interface IFlightRepository {
     Task<Flight?> GetFlight(Guid Id);
     Task CreateFlight(Flight f);
     Task DeleteFlight(Guid id);
+    Task UpdateFlight(Flight f);
 } 

@@ -36,4 +36,10 @@ public static class FlightEndpoints {
         await repo.CreateFlight(flight);
         return Results.Created("/flights/", new {Status = 201, Message = "created"});
     }
+
+    private static async Task<IResult> UpdateFlights(string id,IFlightRepository repo,FlightCreateDto flight_dto) {
+        Flight flight = await repo.GetFlight(Guid.Parse(id));
+        await repo.UpdateFlight(flight);
+        return Results.Ok(new {Status = 200, Message = "success"});
+    }
 }

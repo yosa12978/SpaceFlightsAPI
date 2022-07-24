@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SpaceFlights.API.Dtos;
 
-class FlightCreateDto {
+public class FlightCreateDto {
     [Required]
     public string Rocket {get;set;}
     [Required]

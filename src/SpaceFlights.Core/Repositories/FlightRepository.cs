@@ -36,4 +36,11 @@ public class FlightRepository : IFlightRepository
         var db = _factory.GetConnection();
         return await db.QueryAsync<Flight>("SELECT * FROM Flights");
     }
+
+    public async Task UpdateFlight(Flight f) {
+        var db = _factory.GetConnection();
+        await db.ExecuteAsync(@"UPDATE Flights 
+        SET Rocket=@Rocket, Mission=@Mission, Desc=@Desc, Date=@Date 
+        WHERE Id=@Id", f);
+    }
 }
