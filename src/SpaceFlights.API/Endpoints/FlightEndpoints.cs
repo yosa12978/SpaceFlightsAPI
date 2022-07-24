@@ -39,7 +39,11 @@ public static class FlightEndpoints {
     }
 
     private static async Task<IResult> UpdateFlights(string id,IFlightRepository repo,FlightCreateDto flight_dto) {
-        Flight flight = await repo.GetFlight(Guid.Parse(id));
+        Flight? flight = await repo.GetFlight(Guid.Parse(id));
+        flight.Rocket = flight_dto.Rocket;
+        flight.Mission = flight_dto.Mission;
+        flight.Desc = flight_dto.Desc;
+        flight.Date = flight_dto.Date;
         await repo.UpdateFlight(flight);
         return Results.Ok(new {Status = 200, Message = "success"});
     }
