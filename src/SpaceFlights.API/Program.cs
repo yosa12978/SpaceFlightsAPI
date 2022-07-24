@@ -1,5 +1,8 @@
 using SpaceFlights.API.Endpoints;
-using SpaceFlights.Core.Repositories;
+using SpaceFlights.Core.Repositories.Interfaces;
+using SpaceFlights.Core.Repositories.Impl;
+using SpaceFlights.API.Services.Interfaces;
+using SpaceFlights.API.Services.Impl;
 using SpaceFlights.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,8 +13,11 @@ builder.Services.AddHealthChecks();
 
 builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
     new SqliteConnectionFactory(builder.Configuration.GetValue<string>("Database:ConnectionString")));
+
 builder.Services.AddSingleton<DatabaseInitializer>();
+
 builder.Services.AddSingleton<IFlightRepository, FlightRepository>();
+builder.Services.AddSingleton<IFlightService, FlightService>();
 
 var app = builder.Build();
 
