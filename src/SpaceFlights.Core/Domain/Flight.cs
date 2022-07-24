@@ -2,7 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SpaceFlights.Core.Domain;
 
-public class Flight {
+public class Flight 
+{
     [Required]
     public string Id {get;set;} = default!;
     [Required]

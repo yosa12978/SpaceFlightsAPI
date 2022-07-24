@@ -2,6 +2,8 @@ using System.Runtime.Versioning;
 using SpaceFlights.API.Services.Interfaces;
 using SpaceFlights.Core.Domain;
 using SpaceFlights.API.Dtos.Impl;
+using FluentValidation;
+using SpaceFlights.API.Validators;
 
 namespace SpaceFlights.API.Endpoints;
 
@@ -29,8 +31,9 @@ public static class FlightEndpoints
         return Results.Ok(flight);
     }
 
-    private static async Task<IResult> CreateFlight(FlightCreateDto flight_dto, IFlightService flightService) 
+    private static async Task<IResult> CreateFlight(FlightCreateDto flight_dto, IFlightService flightService, IValidator<FlightCreateDto> validator) 
     {
+
         await flightService.CreateFlight(flight_dto);
         return Results.Created("/flights/", new StatusMessage(201, "Created"));
     }
