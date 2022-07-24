@@ -10,6 +10,7 @@ public static class FlightEndpoints {
         app.MapGet("/flights/{id}", GetFlight);
         app.MapPost("/flights", CreateFlight);
         app.MapDelete("/flights", DeleteFlight);
+        app.MapPut("/flights/{id}", UpdateFlights);
     }
 
     private static async Task<IResult> GetFlights(IFlightRepository repo) {
